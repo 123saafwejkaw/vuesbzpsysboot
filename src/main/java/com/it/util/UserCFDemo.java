@@ -43,7 +43,7 @@ public class UserCFDemo{
     	ArrayList rtnlist = new ArrayList();
             targetUserIndex=getUserIndex(realname);
             if(targetUserIndex==null){
-                System.out.println("没有搜索到此用户，请重新输入：");
+                System.out.println("没有搜索到该用户，请重新输入：");
             }else{
                 //计算用户相似度
                 calcUserSimilarity();
