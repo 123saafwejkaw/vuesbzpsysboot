@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <!--<link rel="stylesheet" href="assets/css/nice-select.min.css">-->
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+
+
+    <link rel="stylesheet" href="kindeditor/themes/default/default.css"/>
+    <link rel="stylesheet" href="kindeditor/plugins/code/prettify.css"/>
+    <script charset="utf-8" src="kindeditor/plugins/code/prettify.js"></script>
+    <script charset="utf-8" src="kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
+    <script>
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#editor_id');
+        });
+    </script>
+    <script>
+        KindEditor.ready(function (K) {
+            K.create('textarea[name="htmodel"]', {
+                width: "100%",
+                uploadJson: 'kindeditor/jsp/upload_json.jsp',
+                fileManagerJson: 'kindeditor/jsp/file_manager_json.jsp',
+                allowFileManager: true,
+                allowImageUpload: true,
+                autoHeightMode: true,
+                afterCreate: function () {
+                    this.loadPlugin('autoheight');
+                },
+                afterBlur: function () {
+                    this.sync();
+                }  //Kindeditor下获取文本框信息
+            });
+        });
+    </script>
+
+
+    <!-- Title -->
+
+</head>
+
+<body>
+
+    <div class="row"  id="app">
+<div class="col-lg-12">
+    <textarea v-model="htmodel" name="htmodel" id="editor_id" style="width: 99%;height: 500px;"></textarea>
+</div>
+<div class="col-lg-12">
+    <a href="javascript:;" class="default-btn" @click="add()">提交</a>
+</div>
+    </div>
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+
+
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+<script type="text/javascript">
+
+
+    layui.use('form', function () {
+        var form = layui.form;
+    });
+
+    var qs = Qs
+    var id = UrlParam.paramValues("id").toString()
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            apply: '',
+            companyid: '',
+            htmodel: '',
+            id:id,
+        },
+        mounted() {
+            this.show()
+        },
+        methods: {
+            show() {
+                axios.post('applyShow', qs.stringify({
+                    id: this.id,
+                })).then(response => {
+                    this.apply = response.data.apply
+                    this.companyid = this.apply.companyid
+                    this.getqy()
+                }).catch(error => {
+                    console.log(error)
+                })
+            },
+            getqy() {
+                axios.post('memberShow', qs.stringify({
+                    id: this.companyid,
+                })).then(response => {
+                    this.qy = response.data.member
+                    window.editor.html(this.qy.htmodel)
+                }).catch(error => {
+                    console.log(error)
+                })
+            },
+            add() {
+                this.htmodel = window.editor.html()
+                if (this.htmodel == "") {
+                    layer.msg("合同内容不能为空", {icon: 5})
+                    return;
+                }
+
+                axios.post('admin/applyEdit', qs.stringify({
+                    ht: this.htmodel,
+                    id: this.id,
+                })).then(response => {
+                    layer.msg("签订成功", {icon: 6})
+                    parent.location.href = "applylb.html"
+                }).catch(error => {
+                })
+
+            },
+
+
+        },
+
+
+    })
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframeleft").load("left.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

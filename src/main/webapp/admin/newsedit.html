@@ -1,0 +1,273 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理中心</title>
+    <base th:href="${#request.getContextPath()}+'/'">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="font/iconsmind-s/css/iconsminds.css"/>
+
+    <link rel="stylesheet" href="font/simple-line-icons/css/simple-line-icons.css"/>
+    <link rel="stylesheet" href="css/vendor/fullcalendar.min.css"/>
+    <link rel="stylesheet" href="css/vendor/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="css/vendor/datatables.responsive.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/vendor/bootstrap-float-label.min.css"/>
+    <link rel="stylesheet" href="css/vendor/bootstrap-tagsinput.css"/>
+    <link rel="stylesheet" href="css/vendor/bootstrap.rtl.only.min.css"/>
+    <link rel="stylesheet" href="css/vendor/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="css/vendor/select2.min.css"/>
+    <link rel="stylesheet" href="css/vendor/select2-bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/vendor/glide.core.min.css"/>
+    <link rel="stylesheet" href="css/vendor/baguetteBox.min.css"/>
+    <link rel="stylesheet" href="css/vendor/bootstrap-stars.css"/>
+    <link rel="stylesheet" href="css/vendor/nouislider.min.css"/>
+    <link rel="stylesheet" href="css/vendor/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" href="css/vendor/component-custom-switch.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/vendor/dropzone.min.css"/>
+    <link rel="stylesheet" href="css/vendor/quill.snow.css"/>
+    <link rel="stylesheet" href="css/vendor/quill.bubble.css"/>
+
+
+    <script src="js/vendor/jquery-3.3.1.min.js"></script>
+
+    <script src="js/vendor/vue.min.js"></script>
+    <script src="js/vendor/dropzone.min.js"></script>
+    <script src="js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="js/vendor/Chart.bundle.min.js"></script>
+    <script src="js/vendor/chartjs-plugin-datalabels.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    <script src="js/vendor/fullcalendar.min.js"></script>
+    <script src="js/vendor/perfect-scrollbar.min.js"></script>
+    <script src="js/vendor/baguetteBox.min.js"></script>
+    <script src="js/vendor/glide.min.js"></script>
+    <script src="js/vendor/progressbar.min.js"></script>
+    <script src="js/vendor/jquery.barrating.min.js"></script>
+    <script src="js/vendor/jquery.validate/jquery.validate.min.js"></script>
+    <script src="js/vendor/jquery.validate/additional-methods.min.js"></script>
+    <script src="js/vendor/bootstrap-tagsinput.min.js"></script>
+    <script src="js/vendor/datatables.min.js"></script>
+    <script src="js/vendor/dataTables.buttons.min.js"></script>
+    <script src="js/vendor/jszip.min.js"></script>
+    <script src="js/vendor/pdfmake.min.js"></script>
+    <script src="js/vendor/vfs_fonts.js"></script>
+    <script src="js/vendor/buttons.html5.min.js"></script>
+    <script src="js/vendor/buttons.print.min.js"></script>
+    <script src="js/vendor/select2.full.js"></script>
+    <script src="js/vendor/nouislider.min.js"></script>
+    <script src="js/vendor/bootstrap-datepicker.js"></script>
+    <script src="js/vendor/Sortable.js"></script>
+    <script src="js/vendor/mousetrap.min.js"></script>
+    <script src="js/dore.script.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/vendor/bootstrap-notify.min.js"></script>
+    <script src="js/vendor/quill.min.js"></script>
+    <script src="js/vendor/ckeditor5-build-classic/ckeditor.js"></script>
+
+
+
+    <link rel="stylesheet" href="../kindeditor/themes/default/default.css" />
+    <link rel="stylesheet" href="../kindeditor/plugins/code/prettify.css" />
+    <script charset="utf-8" src="../kindeditor/plugins/code/prettify.js"></script>
+    <script charset="utf-8" src="../kindeditor/kindeditor-all.js"></script>
+    <script charset="utf-8" src="../kindeditor/lang/zh-CN.js"></script>
+    <script>
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id');
+        });
+    </script>
+    <script>
+        KindEditor.ready(function(K) {
+            K.create('textarea[name="note"]', {
+                width:"100%",
+                uploadJson : '../kindeditor/jsp/upload_json.jsp',
+                fileManagerJson : '../kindeditor/jsp/file_manager_json.jsp',
+                allowFileManager : true,
+                allowImageUpload : true,
+                autoHeightMode : true,
+                afterCreate : function() {this.loadPlugin('autoheight');},
+                afterBlur : function(){ this.sync(); }  //Kindeditor下获取文本框信息
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="../layui/css/layui.css"/>
+
+</head>
+<body class="show-spinner">
+<div id="app">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="mb-4">编辑新闻</h3>
+                        <div class="separator mb-5"></div>
+
+                        <label class="form-group has-float-label mb-4">
+                            <div class="layui-upload">
+                                <div class="layui-upload-list">
+
+                                    <input type="hidden" v-model="news.filename" id="filename"/>
+                                    <img class="layui-upload-img" id="imgname" style="width: 92px;">
+                                    <p id="demoText"></p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label class="form-group has-float-label mb-4">
+                            <button type="button" class="layui-btn" id="test1">上传图片</button>
+
+                        </label>
+
+                        <label class="form-group has-float-label mb-4">
+                            <input class="form-control" v-model="news.title"> <span>标题</span>
+                        </label>
+
+
+                        <label class="form-group has-float-label mb-4">
+                            <textarea name="content" id="editor_id" style="width: 100%;height: 300px;"></textarea>
+                        </label>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <button class="btn btn-primary btn-lg btn-shadow" @click="add">提交</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+<script type="text/javascript" src="../axios/vue.js"></script>
+<script type="text/javascript" src="../axios/axios.min.js"></script>
+<script type="text/javascript" src="../axios/qs.js"></script>
+<script type="text/javascript" src="../axios/getUrlParams.js"></script>
+<script type="text/javascript" src="../layui/layui.js"></script>
+<script type="text/javascript" src="../layui/layui.js"></script>
+
+
+<script>
+    // 消除子窗口内的theme主题按钮
+    $(".theme-button").remove()
+
+    var qs = Qs
+    var id = UrlParam.paramValues("id").toString()
+    var pageNum = UrlParam.paramValues("pageNum").toString()
+    var key = UrlParam.paramValues("key").toString()
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            news:{
+                title:"",
+                filename:"noimg.jpg",
+                content:"",
+                id:id,
+            },
+            pageNum:pageNum,
+            key:key,
+        },
+        mounted(){
+            this.show()
+            this.$nextTick(function () {
+                var img = "";
+                layui.use(['form', 'layer', 'upload'], function () {
+                    $ = layui.jquery;
+                    var form = layui.form
+                        , layer = layui.layer
+                        , upload = layui.upload;
+
+                    //普通图片上传
+                    layui.use('upload', function () {
+                        var $ = layui.jquery
+                            , upload = layui.upload;
+
+                        //普通图片上传
+                        var uploadInst = upload.render({
+                            elem: '#test1'
+                            , url: 'uploadImg'
+                            , accept: 'images'
+                            , theme: '#00365a'
+                            , size: 50000
+                            , before: function (obj) {
+
+                                obj.preview(function (index, file, result) {
+                                    $('#imgname').attr('src', result);
+                                });
+                            }
+                            , done: function (res) {
+                                //如果上传失败
+                                if (res.code > 0) {
+                                    return layer.msg('上传失败');
+                                }
+                                //上传成功
+                                var demoText = $('#demoText');
+                                demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+                                var fileupload = $(".image");
+                                fileupload.attr("value", res.data.src);
+                                // $("#filename").val(res.data.src)
+                                vmm.news.filename = res.data.src
+                                img = res.data.src;
+                            }
+                            , error: function () {
+                                //演示失败状态，并实现重传
+                                var demoText = $('#demoText');
+                                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                demoText.find('.demo-reload').on('click', function () {
+                                    uploadInst.upload();
+                                });
+                            }
+                        });
+                    });
+                });
+            })
+        },
+        methods: {
+            show(){
+                axios.post('newsShow', qs.stringify({
+                    id:this.news.id,
+                })).then(response => {
+                    this.news = response.data.news
+                    window.editor.html(this.news.content)
+                    $("#imgname").attr("src",'../upload/'+this.news.filename)
+
+                }).catch(error => {
+                })
+            },
+            add() {
+                this.news.content = window.editor.html()
+                if(this.news.title==""){
+                    layer.msg("标题不能为空",{icon:5})
+                    return
+                }
+
+                axios.post('newsEdit', qs.stringify({
+                    title:this.news.title,
+                    filename:this.news.filename,
+                    content:this.news.content,
+                    id:this.news.id,
+
+                })).then(response => {
+                    parent.vueindex.changemenu("newslist.html?pageNum="+this.pageNum+"&key="+this.key)
+
+                }).catch(error => {
+                })
+            },
+
+        },
+    })
+
+</script>
+
+
+</html>

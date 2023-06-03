@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <!--<link rel="stylesheet" href="assets/css/nice-select.min.css">-->
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <!-- Title -->
+    <title>大学生就业求职网站</title>
+    <style>
+        select{
+            border:1px solid red;
+            height: 50px;
+            color: #2042e3;
+            border: 1px solid #ebebeb;
+            background-color: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            padding: 10px 20px;
+            width: 100%;
+        }
+
+        .layui-icon.layui-icon-ok{
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Header Area -->
+<div id="iframetop"></div>
+<!-- End Header Area -->
+
+
+<!-- Start Page Title Area -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content" style="text-align: center">
+            <h3>个人中心</h3>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        首页
+                    </a>
+                </li>
+                <li class="active">编辑简历</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Candidates Profile Area -->
+<section class="candidates-profile-area ptb-100">
+    <div class="container" id="app">
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="avatar-sidebar">
+                    <h3>{{sessionmember.role}}</h3>
+
+                    <div class="avatar-img">
+                        <img :src="['upload/'+sessionmember.filename]" alt="Image" style="width: 200px;height: 200px">
+
+                        <div class="avatar-mane">
+                            <h4>{{sessionmember.tname}}</h4>
+                            <!--<span>UX/UI Designer</span>-->
+                        </div>
+                    </div>
+
+                    <div id="iframeleft">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="candidates-profile-content">
+                    <form class="profile-info">
+                        <h3 style="text-align: center">编辑简历</h3>
+
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="layui-upload">
+                                        <div class="layui-upload-list">
+                                            <input type="hidden" v-model="vitae.filename" id="filename"/>
+                                            <p id="demoText"></p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="layui-btn" id="test1" style="background: #2042e3">
+                                        上传简介附件
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-lg-12">-->
+                                <!--<div class="form-group">-->
+                                    <!--<img :src="['upload/'+sessionmember.filename]" alt="Image" style="width: 200px;height: 200px">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>姓名</label>
+                                    <input class="form-control" type="text" v-model="sessionmember.tname" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>性别</label>
+                                    <select style="display: block !important;" v-model="vitae.sex">
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>年龄</label>
+                                    <input class="form-control" type="text" v-model="vitae.age">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>电话</label>
+                                    <input class="form-control" type="text" v-model="vitae.tel">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>邮箱</label>
+                                    <input class="form-control" type="text" v-model="sessionmember.email" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>身份证</label>
+                                    <input class="form-control" type="text" v-model="vitae.idcard">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>专业</label>
+                                    <input class="form-control" type="text" v-model="vitae.major">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>毕业学院</label>
+                                    <input class="form-control" type="text" v-model="vitae.college">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>籍贯</label>
+                                    <input class="form-control" type="text" v-model="vitae.natives">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>详细地址</label>
+                                    <input class="form-control" type="text" v-model="vitae.addr">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>政治面貌</label>
+                                    <input class="form-control" type="text" v-model="vitae.face">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>个人履历</label>
+                                    <textarea v-model="vitae.content" class="form-control" rows="8"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <a href="javascript:;" class="default-btn" @click="add()">保存</a>
+                                <a href="javascript:;" class="default-btn" @click="downvitae()">打印</a>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Candidates Profile Area -->
+
+<!-- Start Subscribe Area -->
+
+<!-- End Subscribe Area -->
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+
+<div class="copy-right-area" id="iframefoot">
+</div>
+
+<!-- End Copy Right Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up"></i>
+</div>
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+
+
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+<script type="text/javascript">
+
+
+
+    var qs = Qs
+    var memberid = UrlParam.paramValues("memberid").toString()
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            sessionmember:"",
+            vitae: {
+                sex: "男",
+                age:"",
+                tel:"",
+                idcard:"",
+                major:"",
+                college:"",
+                natives:"",
+                addr:"",
+                face:"",
+                content:"",
+                memberid:memberid,
+                filename:'',
+            },
+        },
+        mounted() {
+
+
+            $("select").css("display","block")
+            sessionStorage.setItem("membercentermenus","myvitae")
+            this.getsessionmember()
+
+
+
+            layui.use(['form', 'layer', 'upload'], function () {
+                $ = layui.jquery;
+                var form = layui.form
+                    , layer = layui.layer
+                    , upload = layui.upload;
+
+                //普通图片上传
+                layui.use('upload', function () {
+                    var $ = layui.jquery
+                        , upload = layui.upload;
+
+                    //普通图片上传
+                    var uploadInst = upload.render({
+                        elem: '#test1'
+                        , url: 'admin/uploadImg'
+                        , accept: 'file'
+                        , size: 50000
+                        , before: function (obj) {
+
+                            obj.preview(function (index, file, result) {
+                                $('#imgname').attr('src', result);
+                            });
+                        }
+                        , done: function (res) {
+                            //如果上传失败
+                            if (res.code > 0) {
+                                return layer.msg('上传失败');
+                            }
+                            //上传成功
+                            var demoText = $('#demoText');
+                            demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+                            var fileupload = $(".image");
+                            fileupload.attr("value", res.data.src);
+                            // $("#filename").val(res.data.src)
+                            vmm.vitae.filename = res.data.src
+                            // img = res.data.src;
+                        }
+                        , error: function () {
+                            //演示失败状态，并实现重传
+                            var demoText = $('#demoText');
+                            demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                            demoText.find('.demo-reload').on('click', function () {
+                                uploadInst.upload();
+                            });
+                        }
+                    });
+                });
+            });
+        },
+        methods: {
+
+            add(){
+                if(this.vitae.filename == null || this.vitae.filename == ''){
+                    layer.msg("简历附件不能为空",{icon:5})
+                    return;
+                }
+                if(this.vitae.title == ""){
+                    layer.msg("年龄不能为空",{icon:5})
+                    return;
+                }
+
+                if(!/^[1][3,5,6,7,8,9][0-9]{9}$/.test(this.vitae.tel)){
+                    layer.msg("电话输入错误",{icon:5})
+                    return;
+                }
+
+                if(!/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(this.vitae.idcard)){
+                    layer.msg("请选择分类",{icon:5})
+                    return;
+                }
+
+                if(this.vitae.major == ""){
+                    layer.msg("专业不能为空",{icon:5})
+                    return;
+                }
+                if(this.vitae.college == ""){
+                    layer.msg("毕业学院不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.vitae.natives == ""){
+                    layer.msg("籍贯不能为空",{icon:5})
+                    return;
+                }
+                if(this.vitae.addr == ""){
+                    layer.msg("详细地址不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.vitae.face == ""){
+                    layer.msg("政治面貌不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.vitae.content == ""){
+                    layer.msg("个人履历不能为空",{icon:5})
+                    return;
+                }
+                axios.post('vitaeEdit', qs.stringify({
+                    sex:this.vitae.sex,
+                    age:this.vitae.age,
+                    tel:this.vitae.tel,
+                    idcard:this.vitae.idcard,
+                    major:this.vitae.major,
+                    college:this.vitae.college,
+                    natives:this.vitae.natives,
+                    addr:this.vitae.addr,
+                    face:this.vitae.face,
+                    content:this.vitae.content,
+                    memberid:this.vitae.memberid,
+                    filename:this.vitae.filename,
+
+                })).then(response => {
+                    layer.msg("编辑成功!",{icon:6})
+                }).catch(error => {
+                })
+
+            },
+            getsessionmember() {
+                axios.post('checkmember', qs.stringify({})).then(response => {
+                    if (response.data.data == 200) {
+                        this.sessionmember = response.data.sessionmember
+                        $("#imgname").attr("src","upload/"+this.sessionmember.filename)
+                        this.show()
+                    }else{
+                        location.replace("login.html")
+                    }
+                }).catch(error => {
+                })
+            },
+
+            show(){
+                axios.post('vitaeShow', qs.stringify({
+                    memberid:this.sessionmember.id
+                })).then(response => {
+                    if (response.data.data == 200) {
+                        this.vitae = response.data.vitae
+                        var demoText = $('#demoText');
+                        demoText.html(this.vitae.filename);
+
+                    }else{
+                        layer.msg("无简历信息！",{icon:5})
+                    }
+                }).catch(error => {
+                })
+            },
+
+
+            downvitae(){
+               location.replace("vitaedetails.html?memberid="+this.sessionmember.id)
+            },
+
+
+        },
+
+
+    })
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframeleft").load("left.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

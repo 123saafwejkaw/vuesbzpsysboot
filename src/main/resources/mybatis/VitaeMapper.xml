@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.VitaeDAO">
+    <resultMap type="com.it.entity.Vitae" id="BaseResultMap">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="memberid" property="memberid" jdbcType="INTEGER"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="idcard" property="idcard" jdbcType="VARCHAR"/>
+        <result column="major" property="major" jdbcType="VARCHAR"/>
+        <result column="college" property="college" jdbcType="VARCHAR"/>
+        <result column="natives" property="natives" jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <result column="face" property="face" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="filename" property="filename" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <insert id="add" parameterType="com.it.entity.Vitae">
+        insert into Vitae values(null,#{memberid},#{sex},#{age},#{tel},#{idcard},#{major},#{college},#{natives},#{addr},#{face},#{content},#{filename})
+    </insert>
+
+    <update id="update" parameterType="com.it.entity.Vitae">
+        update Vitae
+        <set>
+            <if test="sex!=null and sex!=''">sex=#{sex},</if>
+            <if test="age!=null and age!=''">age=#{age},</if>
+            <if test="tel!=null and tel!=''">tel=#{tel},</if>
+            <if test="idcard!=null and idcard!=''">idcard=#{idcard},</if>
+            <if test="major!=null and major!=''">major=#{major},</if>
+            <if test="college!=null and college!=''">college=#{college},</if>
+            <if test="natives!=null and natives!=''">natives=#{natives},</if>
+            <if test="addr!=null and addr!=''">addr=#{addr},</if>
+            <if test="face!=null and face!=''">face=#{face},</if>
+            <if test="content!=null and content!=''">content=#{content},</if>
+            <if test="filename!=null and filename!=''">filename=#{filename},</if>
+
+        </set>
+        where memberid=#{memberid}
+    </update>
+
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from Vitae where 1=1
+        <if test="key!=null and key!=''">
+            and memberid in (select id from member where tname  like "%"#{key}"%")
+        </if>
+        <if test="memberid!=null and memberid!=''">
+            and memberid=#{memberid}
+        </if>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="int" resultType="com.it.entity.Vitae">
+      select * from Vitae where id=#{id}
+    </select>
+
+    <select id="findVitae" parameterType="int" resultType="com.it.entity.Vitae">
+        select * from Vitae where memberid=#{memberid}
+    </select>
+
+
+
+    <delete id="delete" parameterType="int">
+      delete from Vitae where id=#{id}
+    </delete>
+
+
+</mapper>
+

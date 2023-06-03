@@ -1,0 +1,255 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>管理中心</title>
+    <base th:href="${#request.getContextPath()}+'/'">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="font/iconsmind-s/css/iconsminds.css" />
+
+    <link rel="stylesheet" href="font/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="css/vendor/fullcalendar.min.css" />
+    <link rel="stylesheet" href="css/vendor/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="css/vendor/datatables.responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/vendor/bootstrap-float-label.min.css" />
+    <link rel="stylesheet" href="css/vendor/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="css/vendor/bootstrap.rtl.only.min.css" />
+    <link rel="stylesheet" href="css/vendor/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="css/vendor/select2.min.css" />
+    <link rel="stylesheet" href="css/vendor/select2-bootstrap.min.css" />
+    <link rel="stylesheet" href="css/vendor/glide.core.min.css" />
+    <link rel="stylesheet" href="css/vendor/baguetteBox.min.css" />
+    <link rel="stylesheet" href="css/vendor/bootstrap-stars.css" />
+    <link rel="stylesheet" href="css/vendor/nouislider.min.css" />
+    <link rel="stylesheet" href="css/vendor/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="css/vendor/component-custom-switch.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/vendor/dropzone.min.css" />
+    <link rel="stylesheet" href="css/vendor/quill.snow.css" />
+    <link rel="stylesheet" href="css/vendor/quill.bubble.css" />
+
+
+
+    <script src="js/vendor/jquery-3.3.1.min.js"></script>
+
+    <script src="js/vendor/vue.min.js"></script>
+    <script src="js/vendor/dropzone.min.js"></script>
+    <script src="js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="js/vendor/Chart.bundle.min.js"></script>
+    <script src="js/vendor/chartjs-plugin-datalabels.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    <script src="js/vendor/fullcalendar.min.js"></script>
+    <script src="js/vendor/perfect-scrollbar.min.js"></script>
+    <script src="js/vendor/baguetteBox.min.js"></script>
+    <script src="js/vendor/glide.min.js"></script>
+    <script src="js/vendor/progressbar.min.js"></script>
+    <script src="js/vendor/jquery.barrating.min.js"></script>
+    <script src="js/vendor/jquery.validate/jquery.validate.min.js"></script>
+    <script src="js/vendor/jquery.validate/additional-methods.min.js"></script>
+    <script src="js/vendor/bootstrap-tagsinput.min.js"></script>
+    <script src="js/vendor/datatables.min.js"></script>
+    <script src="js/vendor/dataTables.buttons.min.js"></script>
+    <script src="js/vendor/jszip.min.js"></script>
+    <script src="js/vendor/pdfmake.min.js"></script>
+    <script src="js/vendor/vfs_fonts.js"></script>
+    <script src="js/vendor/buttons.html5.min.js"></script>
+    <script src="js/vendor/buttons.print.min.js"></script>
+    <script src="js/vendor/select2.full.js"></script>
+    <script src="js/vendor/nouislider.min.js"></script>
+    <script src="js/vendor/bootstrap-datepicker.js"></script>
+    <script src="js/vendor/Sortable.js"></script>
+    <script src="js/vendor/mousetrap.min.js"></script>
+    <script src="js/dore.script.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/vendor/bootstrap-notify.min.js"></script>
+    <script src="js/vendor/quill.min.js"></script>
+    <script src="js/vendor/ckeditor5-build-classic/ckeditor.js"></script>
+
+    <link rel="stylesheet" href="../layui/css/layui.css" />
+
+    <style>
+        .search-sm:after{
+            display: none;
+        }
+    </style>
+
+
+</head>
+<body  class="show-spinner">
+<div id="app">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1>地区管理</h1>
+
+                <nav class="breadcrumb-container d-none d-sm-block d-lg-inline-block" aria-label="breadcrumb">
+                    <ol class="breadcrumb pt-0">
+                        <li class="breadcrumb-item">
+                            <a href="#">首页</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">地区管理</a>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="mb-2">
+                    <a class="btn pt-0 pl-0 d-inline-block d-md-none" data-toggle="collapse" href="#displayOptions"
+                       role="button" aria-expanded="true" aria-controls="displayOptions">
+                        显示操作
+                        <i class="simple-icon-arrow-down align-middle"></i>
+                    </a>
+                    <div class="collapse dont-collapse-sm" id="displayOptions">
+                        <div class="d-block d-md-inline-block">
+                            <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                <input class="form-control" v-model="key" style="padding: 11px;border-radius: 0px;" placeholder="查询">
+                            </div>
+                            <button type="button" class="layui-btn layui-btn-primary" @click="getarealist()">查询</button>
+                            <button type="button" class="layui-btn  layui-btn-primary" @click="add()">新增</button>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="separator"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-4 data-table-rows data-tables-hide-filter">
+                <table class="data-table" style="width: 100%">
+                    <thead style="width: 100%">
+                    <tr>
+                        <th>#</th>
+                        <th>地区</th>
+                        <th style="text-align: right">操作</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    <tr v-for="(area,i) in arealist">
+                        <td>{{i+1}}</td>
+                        <td> {{ area.name }}</td>
+                        <td style="text-align: right">
+                            <a href="javascript:;" @click="edit(area.id)"><span class="layui-badge layui-bg-cyan"><i class="layui-icon layui-icon-edit"></i></span></a>
+                            <a href="javascript:;" @click="del(area.id)"><span class="layui-badge"><i class="layui-icon layui-icon-delete"></i></span></a>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="9" >
+                            <div id="demo1" style="text-align: center"></div>
+                        </td>
+                    </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+
+
+<script type="text/javascript" src="../axios/vue.js"></script>
+<script type="text/javascript" src="../axios/axios.min.js"></script>
+<script type="text/javascript" src="../axios/qs.js"></script>
+<script type="text/javascript" src="../axios/getUrlParams.js"></script>
+<script type="text/javascript" src="../layui/layui.js"></script>
+<script>
+    // 消除子窗口内的theme主题按钮
+    $(".theme-button").remove()
+
+
+    var qs = Qs
+    var pageNum = UrlParam.paramValues("pageNum")==null?1:UrlParam.paramValues("pageNum").toString()
+    var key = UrlParam.paramValues("key")==null?"":UrlParam.paramValues("key").toString()
+
+
+    var vmm=new Vue({
+        el:'#app',
+        data:{
+            key:key,
+            arealist:[],
+            pageSize:10,
+            pageNum:pageNum,
+        },
+        mounted(){
+            this.getarealist()
+        },
+        methods: {
+
+            add(){
+                parent.vueindex.changemenu("areaadd.html")
+            },
+
+            edit(id){
+                parent.vueindex.changemenu("areaedit.html?id="+id+"&pageNum="+this.pageNum+"&key="+this.key)
+            },
+
+            del(id){
+                axios.post('areaDel',qs.stringify({
+                    id:id,
+                })).then(response =>{
+                    this.getarealist()
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+
+            getarealist() {
+                axios.post('areaList',qs.stringify({
+                    key:this.key,
+                    pageSize:this.pageSize
+                })).then(response =>{
+                    layui.use(['laypage', 'layer'], function(){
+                        var laypage = layui.laypage
+                            ,layer = layui.layer;
+                        //总页数大于页码总数
+                        laypage.render({
+                            elem: 'demo1'
+                            ,limit:vmm.pageSize
+                            ,curr:vmm.pageNum
+                            ,count: response.data.list.length //数据总数
+                            ,jump: function(obj,first){
+                                vmm.pageNum = obj.curr
+                                vmm.current_page(obj.curr,vmm.pageSize)
+                                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                            }
+                        });
+                    });
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+
+            current_page(page,pageSize){
+                axios.post('areaList',qs.stringify({
+                    key:this.key,
+                    pageNum:page,
+                    pageSize:pageSize,
+                })).then(response =>{
+                    this.arealist = response.data.pageInfo.list
+                    console.log(this.arealist)
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+        },
+
+    })
+
+</script>
+
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="leftapp">
+    <li v-if="sessionmember.role=='求职者'">
+        <a href="memberedit.html" :class="membercentermenus=='memberedit'?'active':''">首页</a>
+    </li>
+
+    <li v-if="sessionmember.role=='求职者'">
+        <a href="javascript:;" @click="myvitae()" :class="membercentermenus=='myvitae'?'active':''">我的简历</a>
+    </li>
+    <li v-if="sessionmember.role=='求职者'">
+        <a href="applylb.html" :class="membercentermenus=='applylb'?'active':''">我的申请</a>
+    </li>
+    <li v-if="sessionmember.role=='企业'">
+        <a href="companyedit.html" :class="membercentermenus=='companyedit'?'active':''">首页</a>
+    </li>
+    <li  v-if="sessionmember.role=='企业'">
+        <a href="joblb.html" :class="membercentermenus=='joblb'?'active':''">招聘信息</a>
+    </li>
+    <li  v-if="sessionmember.role=='企业'">
+        <a href="applylist.html" :class="membercentermenus=='applylist'?'active':''">应聘信息</a>
+    </li>
+    <li  v-if="sessionmember.role=='企业'">
+        <a href="commentlb.html" :class="membercentermenus=='commentlb'?'active':''">咨询评价</a>
+    </li>
+    <li  v-if="sessionmember.role=='企业'">
+        <a href="htmodel.html" :class="membercentermenus=='htmodel'?'active':''">合同模板</a>
+    </li>
+    <li>
+        <a href="upassedit.html" :class="membercentermenus=='upassedit'?'active':''">修改密码</a>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    var qs = Qs
+    var lefttop = new Vue({
+        el: '#leftapp',
+        data: {
+            sessionmember: {},
+            membercentermenus:"",
+        },
+        mounted() {
+            this.getsessionmember()
+            this.membercentermenus = sessionStorage.getItem("membercentermenus")
+        },
+        methods: {
+            getsessionmember() {
+                axios.post('checkmember', qs.stringify({})).then(response => {
+                    if (response.data.data == 200) {
+                        this.sessionmember = response.data.sessionmember
+                    }else{
+                        location.replace("login.html")
+                    }
+                }).catch(error => {
+                })
+            },
+
+            myvitae() {
+                if(this.sessionmember==""){
+                    location.replace("login.html")
+                    return false;
+                }
+                axios.post('issavevitae', qs.stringify({
+                    memberid:this.sessionmember.id,
+                })).then(response => {
+                    if (response.data.data == 400) {
+                        location.replace("vitaeadd.html")
+                    }else{
+                        location.replace("vitaeedit.html?memberid="+this.sessionmember.id)
+                    }
+                }).catch(error => {
+                })
+            },
+
+        },
+
+
+    })
+</script>
+</body>
+</html>

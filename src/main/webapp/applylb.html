@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <link rel="stylesheet" href="assets/css/nice-select.min.css">
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Title -->
+    <title>大学生就业求职网站</title>
+
+
+    <style>
+        .applystatus {
+            background-color: red !important;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Header Area -->
+<div id="iframetop"></div>
+<!-- End Header Area -->
+
+<!-- Start Page Title Area -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content" style="text-align: center">
+            <h3>个人中心</h3>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        首页
+                    </a>
+                </li>
+                <li class="active">我的申请</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Candidates Profile Area -->
+<section class="candidates-profile-area ptb-100">
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="avatar-sidebar">
+                    <h3>{{sessionmember.role}}</h3>
+
+                    <div class="avatar-img">
+                        <img :src="['upload/'+sessionmember.filename]" alt="Image">
+
+                        <div class="avatar-mane">
+                            <h4>{{sessionmember.tname}}</h4>
+                            <!--<span>UX/UI Designer</span>-->
+                        </div>
+                    </div>
+
+                    <div id="iframeleft">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="candidates-profile-content">
+                    <h4>申请列表</h4>
+
+
+                    <div class="hot-jobs-list" v-for="(apply,i) in applylist">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2">
+                                <a href="#" class="hot-jobs-img">
+                                    <img :src="['upload/'+apply.company.filename]" alt="Image">
+                                </a>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="hot-jobs-content">
+                                    <h3><a :href="['jobdetails.html?id='+apply.job.id]">{{apply.job.title}}</a></h3>
+                                    <!--<span class="sub-title">Finix loans & funding agency</span>-->
+                                    <ul>
+                                        <li><span>学历要求: </span>{{apply.job.education}}</li>
+                                        <li><span>职位: </span>{{apply.job.category.name}}</li>
+                                        <li><span>城市: </span>{{apply.job.area.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="hot-jobs-btn">
+                                    <a v-if="apply.ht == '' && apply.status=='应聘成功'" href="javascript:;" @click="qht(apply.id)"><span class="layui-badge">签合同</span></a>
+                                    <a v-if="apply.ht != ''" href="javascript:;" @click="htview(apply.id)"><span class="layui-badge">合同预览</span></a>
+                                    <a href="javascript:;" @click="del(apply.id)"><span class="layui-badge"><i class="layui-icon layui-icon-delete"></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <span c :class="apply.status!='待查阅'?'featured applystatus':'featured'">{{apply.status}}</span>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Candidates Profile Area -->
+
+<!-- Start Subscribe Area -->
+
+<!-- End Subscribe Area -->
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+
+<div class="copy-right-area" id="iframefoot">
+</div>
+
+<!-- End Copy Right Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up"></i>
+</div>
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript">
+
+
+    var pageNum = UrlParam.paramValues("pageNum")==null?1:UrlParam.paramValues("pageNum").toString()
+    var key = UrlParam.paramValues("key")==null?"":UrlParam.paramValues("key").toString()
+    var qs = Qs
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            sessionmember: {},
+            applylist:[],
+
+            key:key,
+            pageSize:10,
+            pageNum:pageNum,
+
+        },
+        mounted() {
+            this.getsessionmember()
+            sessionStorage.setItem("membercentermenus", "applylb")
+            this.getjoblist()
+        },
+        methods: {
+
+            getjoblist() {
+                axios.post('applyLb',qs.stringify({
+                    key:this.key,
+                    pageSize:this.pageSize
+                })).then(response =>{
+                    layui.use(['laypage', 'layer'], function(){
+                        var laypage = layui.laypage
+                            ,layer = layui.layer;
+                        //总页数大于页码总数
+                        laypage.render({
+                            elem: 'demo1'
+                            ,limit:vmm.pageSize
+                            ,curr:vmm.pageNum
+                            ,theme:"#2042e3"
+                            ,count: response.data.list.length //数据总数
+                            ,jump: function(obj,first){
+                                vmm.pageNum = obj.curr
+                                vmm.current_page(obj.curr,vmm.pageSize)
+                                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                            }
+                        });
+                    });
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+
+            current_page(page,pageSize){
+                axios.post('applyLb',qs.stringify({
+                    key:this.key,
+                    pageNum:page,
+                    pageSize:pageSize,
+                })).then(response =>{
+                    this.applylist = response.data.pageInfo.list
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+            getsessionmember() {
+                axios.post('checkmember', qs.stringify({})).then(response => {
+                    if (response.data.data == 200) {
+                        this.sessionmember = response.data.sessionmember
+                        this.member = response.data.sessionmember
+                        $("#imgname").attr("src", "upload/" + this.member.filename)
+                    } else {
+                        location.replace("login.html")
+                    }
+                }).catch(error => {
+                })
+            },
+
+
+
+            del(id) {
+                axios.post('admin/applyDel', qs.stringify({
+                    id:id,
+                })).then(response => {
+                    this.getjoblist()
+                }).catch(error => {
+                })
+            },
+            qht(id){
+                var index = layer.open({
+                    title: "合同签订",
+                    type: 2,
+                    area: ['900px', '650px'],
+                    maxmin: true,
+                    content: "qht.html?id=" + id
+                })
+            },
+            htview(id){
+                var index = layer.open({
+                    title: "合同预览",
+                    type: 2,
+                    area: ['900px', '650px'],
+                    maxmin: true,
+                    content: "htview.html?id=" + id
+                })
+            },
+
+
+        },
+
+
+    })
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframeleft").load("left.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

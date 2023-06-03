@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大学生就业求职网站</title>
+</head>
+<body>
+
+<header class="header-area">
+    <!-- Start Top Header -->
+
+    <div id="topapp">
+
+        <div class="top-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <ul class="header-left-content">
+                            <li>
+                                <span>热线电话</span>
+                                <a href="tel:+1-(514)-312-5678">+1388888888</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header-right-content">
+
+                            <ul v-if="sessionmember.email!=''" class="log-in">
+                                <li>
+                                    <a href="javascript:;">
+                                        {{sessionmember.email}}（{{sessionmember.role}}） 你好！
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+                            <ul v-if="sessionmember.email!=''" class="log-in">
+                                <li>
+                                    <a v-if="sessionmember.role=='求职者'" href="favlist.html">收藏夹</a>
+                                    <a v-if="sessionmember.role=='求职者'" href="memberedit.html">个人中心</a>
+                                    <a v-if="sessionmember.role=='企业'" href="companyedit.html">个人中心</a>
+
+                                </li>
+
+
+                                <li>
+                                    <a href="javascript:;" @click="logout()">注销</a>
+                                </li>
+
+                            </ul>
+
+
+                            <!--<ul v-if="sessionmember.email!=''" class="language">-->
+                                <!--<li>-->
+                                    <!--<div class="dropdown language-btn">-->
+                                        <!--<button class="dropdown-toggle" type="button" data-toggle="dropdown">-->
+												<!--<span>-->
+													<!--个人中心-->
+													<!--<i class="bx bx-chevron-down"></i>-->
+												<!--</span>-->
+                                        <!--</button>-->
+
+                                        <!--<div class="dropdown-menu">-->
+
+                                            <!--<a href="javascript:;" @click="logout()" class="dropdown-item" style="display: flex">-->
+                                                <!--<i class="bx bxs-user"></i>-->
+                                                <!--<span>个人信息</span>-->
+                                            <!--</a>-->
+
+                                            <!--<a href="javascript:;" @click="logout()" class="dropdown-item" style="display: flex">-->
+                                                <!--<i class="bx bxs-exit"></i>-->
+                                                <!--<span>退出</span>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+
+                            <ul v-if="sessionmember.email==''" class="log-in">
+                                <li>
+                                    <a href="login.html">
+                                        <i class="bx bxs-lock"></i>
+                                        登录
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="register.html">
+                                        <i class="bx bxs-user"></i>
+                                        注册
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Top Header -->
+
+        <!-- Start Navbar Area -->
+        <div class="navbar-area">
+            <div class="mobile-nav">
+                <div class="container">
+                    <div class="mobile-menu">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="assets/images/logo.png" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="desktop-nav">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                        <a class="navbar-brand" href="index.html" style="font-size: 20px;">
+                            <!--<img src="assets/images/logo.png" alt="logo">-->
+                            大学生就业求职网站
+
+                        </a>
+
+                        <div class="collapse navbar-collapse mean-menu">
+                            <ul class="navbar-nav m-auto">
+
+                                <li class="nav-item">
+                                    <a href="index.html" :class="banermenus=='index'?'nav-link active':'nav-link'">
+                                        首页
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="noticelist.html" :class="banermenus=='noticelist'?'nav-link active':'nav-link'">
+                                        公告信息
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="newslist.html" :class="banermenus=='newslist'?'nav-link active':'nav-link'">
+                                        新闻资讯
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="joblist.html" :class="banermenus=='joblist'?'nav-link active':'nav-link'">
+                                        招聘信息
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="hotjob.html" :class="banermenus=='hotjob'?'nav-link active':'nav-link'">
+                                        热门职位
+                                    </a>
+                                </li>
+
+                                <li class="nav-item" v-if="sessionmember.email!=''">
+                                    <a href="recommend.html" :class="banermenus=='recommend'?'nav-link active':'nav-link'">
+                                        猜你喜欢
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="companylist.html" :class="banermenus=='companylist'?'nav-link active':'nav-link'">
+                                        招聘企业
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="articlelist.html" :class="banermenus=='articlelist'?'nav-link active':'nav-link'">
+                                        在线论坛
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="messagelist.html" :class="banermenus=='messagelist'?'nav-link active':'nav-link'">
+                                        在线留言
+                                    </a>
+                                </li>
+
+
+                                <!--<li class="nav-item">-->
+                                    <!--<a href="#" class="nav-link active">-->
+                                        <!--Home-->
+                                        <!--<i class="bx bx-chevron-down"></i>-->
+                                    <!--</a>-->
+
+                                    <!--<ul class="dropdown-menu">-->
+                                        <!--<li class="nav-item">-->
+                                            <!--<a href="index.html" class="nav-link active">Home One</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="nav-item">-->
+                                            <!--<a href="index-2.html" class="nav-link">Home Two</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="nav-item">-->
+                                            <!--<a href="index-3.html" class="nav-link">Home Three</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+
+
+
+
+
+
+
+
+                            </ul>
+
+                            <div v-show="sessionmember!='' && sessionmember.role=='企业'" class="others-option">
+                                <div class="get-quote">
+                                    <a href="jobadd.html" class="default-btn">
+                                        发布招聘信息
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="others-option-for-responsive">
+                <div class="container">
+                    <div class="dot-menu">
+                        <div class="inner">
+                            <div class="circle circle-one"></div>
+                            <div class="circle circle-two"></div>
+                            <div class="circle circle-three"></div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="option-inner">
+                            <div class="others-option justify-content-center d-flex align-items-center">
+                                <div class="get-quote">
+                                    <a href="post-job.html" class="default-btn">
+                                        Post a Job
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Navbar Area -->
+</header>
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+
+
+<script type="text/javascript">
+
+    var qs = Qs
+    var topvmm = new Vue({
+        el: '#topapp',
+        data: {
+            sessionmember:{
+                email:"",
+            },
+            banermenus:"",
+        },
+        mounted(){
+            this.getsessionmember()
+            this.banermenus = sessionStorage.getItem("banermenus")
+        },
+        methods: {
+            getsessionmember() {
+                axios.post('checkmember', qs.stringify({
+                })).then(response => {
+                    if(response.data.data==200){
+                        this.sessionmember = response.data.sessionmember
+                    }
+                }).catch(error => {
+                })
+            },
+
+            logout() {
+                axios.post('memberExit', qs.stringify({
+                })).then(response => {
+                    location.replace("index.html")
+                }).catch(error => {
+                })
+            },
+
+
+        },
+
+
+    })
+
+</script>
+
+</body>
+
+
+
+
+
+</html>

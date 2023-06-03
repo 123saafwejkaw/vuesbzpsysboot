@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <link rel="stylesheet" href="assets/css/nice-select.min.css">
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Title -->
+    <title>大学生就业求职网站</title>
+</head>
+
+<body>
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Header Area -->
+<div id="iframetop"></div>
+<!-- End Header Area -->
+
+<!-- Start Page Title Area -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>登录</h2>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        首页
+                    </a>
+                </li>
+                <li class="active">登录</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start User Area -->
+<section class="user-area ptb-100">
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="user-form-content log-in-50">
+                    <h3>登录你的帐户</h3>
+
+                    <form class="user-form">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>邮箱</label>
+                                    <input class="form-control" type="text" v-model="member.email" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>密码</label>
+                                    <input class="form-control" type="password" v-model="member.upass" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>验证码</label>
+                                    <input type="text" id="yzm" v-model="yzm" class="form-control" style="width: 83%" autocomplete="off">
+                                    <div id="check-code" style="overflow: hidden;">
+                                        <div class="code" id="data_code"></div>
+                                        <input type="hidden" value="" name="hiddenyzm" id="hiddenyzm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-12">-->
+                                <!--<div class="login-action">-->
+											<!--<span class="log-rem">-->
+												<!--<input id="remember-2" type="checkbox" v-model="remember">-->
+												<!--<label>记住我</label>-->
+											<!--</span>-->
+
+                                    <!--<span class="forgot-login">-->
+												<!--<a href="change-password.html">忘记密码?</a>-->
+											<!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="col-12">
+                                <a class="default-btn" href="JavaScript:;" @click="add()">
+                                    登录
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- End User Area -->
+
+<!-- Start Subscribe Area -->
+
+<!-- End Subscribe Area -->
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+<div class="copy-right-area"  id="iframefoot">
+</div>
+<!-- End Copy Right Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up"></i>
+</div>
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+
+
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+
+
+<script type="text/javascript">
+
+
+    var qs = Qs
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            member:{
+                email:"",
+                upass:"",
+            },
+            yzm:"",
+            hiddenyzm:"",
+        },
+        mounted(){
+            /**
+             * 验证码
+             * @param {Object} o 验证码长度
+             */
+            $.fn.code_Obj = function(o) {
+                var _this = $(this);
+                var options = {
+                    code_l: o.codeLength,//验证码长度
+                    codeChars: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+                    ],
+                    codeColors: ['#f44336', '#009688', '#cddc39', '#03a9f4', '#9c27b0', '#5e4444', '#9ebf9f', '#ffc8c4', '#2b4754', '#b4ced9', '#835f53', '#aa677e'],
+                    code_Init: function() {
+                        var code = "";
+                        var codeColor = "";
+                        var checkCode = _this.find("#data_code");
+                        for(var i = 0; i < this.code_l; i++) {
+                            var charNum = Math.floor(Math.random() * 52);
+                            code += this.codeChars[charNum];
+                        }
+                        for(var i = 0; i < this.codeColors.length; i++) {
+                            var charNum = Math.floor(Math.random() * 12);
+                            codeColor = this.codeColors[charNum];
+                        }
+                        console.log(code);
+                        if(checkCode) {
+                            checkCode.css('color', codeColor);
+                            checkCode.className = "code";
+                            checkCode.text(code);
+                            checkCode.attr('data-value', code.toLowerCase());
+                            $("#hiddenyzm").attr('value', code.toLowerCase());
+                        }
+                    }
+                };
+
+                options.code_Init();//初始化验证码
+                _this.find("#data_code").bind('click', function() {
+                    options.code_Init();
+                });
+            };
+
+            $('#check-code').code_Obj({
+                codeLength: 5
+            });
+
+
+        },
+        methods: {
+
+            add() {
+                if(!/^[1-9]\d{7,10}@qq\.com$/.test(this.member.email)){
+                    layer.msg("请输入正确的QQ邮箱！",{icon:5})
+                    return false;
+                }
+                if (this.member.upass == "") {
+                    layer.msg("密码不能为空", {icon: 5})
+                    return false;
+                }
+                if (this.yzm == "") {
+                    layer.msg("验证码不能为空", {icon: 5})
+                    return false;
+                }
+                this.hiddenyzm = $("#hiddenyzm").val()
+                if (this.yzm.toLowerCase() != this.hiddenyzm.toLowerCase()) {
+                    layer.msg("验证码输入错误", {icon: 5})
+                    this.yzm=""
+                    return false;
+                }
+
+                axios.post('Login', qs.stringify({
+                    email: this.member.email,
+                    upass: this.member.upass,
+                })).then(response => {
+                    if(response.data.data==200){
+                        location.replace("index.html")
+                    }else{
+                        layer.msg("邮箱或密码错误！",{icon:2})
+                    }
+                }).catch(error => {
+                })
+            },
+
+        },
+
+
+    })
+
+
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

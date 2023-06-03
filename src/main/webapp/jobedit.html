@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <!--<link rel="stylesheet" href="assets/css/nice-select.min.css">-->
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <!-- Title -->
+    <title>大学生就业求职网站</title>
+    <style>
+        select{
+            border:1px solid red;
+            height: 50px;
+            color: #2042e3;
+            border: 1px solid #ebebeb;
+            background-color: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            padding: 10px 20px;
+            width: 100%;
+        }
+
+        .layui-icon.layui-icon-ok{
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Header Area -->
+<div id="iframetop"></div>
+<!-- End Header Area -->
+
+
+<!-- Start Page Title Area -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content" style="text-align: center">
+            <h3>个人中心</h3>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        首页
+                    </a>
+                </li>
+                <li class="active">编辑招聘信息</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Candidates Profile Area -->
+<section class="candidates-profile-area ptb-100">
+    <div class="container" id="app">
+
+
+
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="avatar-sidebar">
+                    <h3>{{sessionmember.role}}</h3>
+
+                    <div class="avatar-img">
+                        <img :src="['upload/'+sessionmember.filename]" alt="Image">
+
+                        <div class="avatar-mane">
+                            <h4>{{sessionmember.tname}}</h4>
+                            <!--<span>UX/UI Designer</span>-->
+                        </div>
+                    </div>
+
+                    <div id="iframeleft">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="candidates-profile-content">
+                    <form class="profile-info">
+                        <h3>编辑招聘信息</h3>
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>标题</label>
+                                    <input class="form-control" type="text" v-model="job.title">
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>城市</label>
+                                    <select style="display: block !important;" v-model="job.areaid">
+                                        <option value="">请选择</option>
+                                        <option v-for="(area,i) in arealist" :value="area.id">{{area.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>分类</label>
+                                    <select style="display: block !important;" v-model="job.categoryid">
+                                        <option value="">请选择</option>
+                                        <option v-for="(category,i) in categorylist" :value="category.id">{{category.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>薪资</label>
+                                    <input class="form-control" type="text" v-model="job.salary">
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="layui-form layui-form-item">
+                                    <label>待遇</label>
+                                    <div class="layui-form-item">
+                                        <input v-for="(welfare,i) in welfarelist" type="checkbox" v-model="welfarearray" :value="welfare.name" :title="welfare.name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>要求学历</label>
+                                    <input class="form-control" type="text" v-model="job.education">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>工作经验要求</label>
+                                    <input class="form-control" type="text" v-model="job.experience">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>招聘人数</label>
+                                    <input class="form-control" type="text" v-model="job.num">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>职位描述</label>
+                                    <textarea v-model="job.content" class="form-control" rows="8"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <a href="javascript:;" class="default-btn" @click="add()">保存</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Candidates Profile Area -->
+
+<!-- Start Subscribe Area -->
+
+<!-- End Subscribe Area -->
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+
+<div class="copy-right-area" id="iframefoot">
+</div>
+
+<!-- End Copy Right Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up"></i>
+</div>
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+
+
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+<script type="text/javascript">
+
+
+    layui.use('form', function(){
+        var form = layui.form;
+    });
+
+    var qs = Qs
+    var id = UrlParam.paramValues("id").toString()
+    var pageNum = UrlParam.paramValues("pageNum").toString()
+    var key = UrlParam.paramValues("key").toString()
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            sessionmember:"",
+            job: {
+                title: "",
+                areaid:"",
+                categoryid:"",
+                welfarearr:"",
+                salary:"",
+                education:"",
+                experience:"",
+                num:"",
+                content:"",
+                id:id,
+            },
+            welfarearray:[],
+            arealist:[],
+            categorylist:[],
+            welfarelist:[],
+
+
+        },
+        mounted() {
+            $("select").css("display","block")
+            sessionStorage.setItem("membercentermenus","joblb")
+            this.getsessionmember()
+            this.getarealist()
+            this.getcategorylist()
+            this.getwelfarelist()
+            this.show()
+        },
+        methods: {
+            show(){
+                axios.post('jobShow', qs.stringify({
+                    id:this.job.id,
+                })).then(response => {
+                    this.job = response.data.job
+
+                    var arr = this.job.welfarearr.split(",")
+                    for(var i=0;i<arr.length;i++){
+                        this.welfarearray.push(arr[i])
+                    }
+                }).catch(error => {
+                })
+            },
+            add(){
+
+                var welfarea = new Array();
+                $("input[type='checkbox']:checked").each(function(index,lab){
+                    welfarea.push(lab.value)
+                })
+                this.job.welfarearr = welfarea
+
+                if(this.job.title == ""){
+                    layer.msg("标题不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.job.areaid == ""){
+                    layer.msg("请选择城市",{icon:5})
+                    return;
+                }
+
+                if(this.job.categoryid == ""){
+                    layer.msg("请选择分类",{icon:5})
+                    return;
+                }
+
+                if(this.job.salary == ""){
+                    layer.msg("薪资不能为空",{icon:5})
+                    return;
+                }
+
+                if($("input[type='checkbox']:checked").length==0){
+                    layer.msg("请选择待遇",{icon:5})
+                    return false;
+                }
+
+                if(this.job.education == ""){
+                    layer.msg("要求学历不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.job.experience == ""){
+                    layer.msg("工作经验要求不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.job.num == ""){
+                    layer.msg("招聘人数不能为空",{icon:5})
+                    return;
+                }
+
+                if(this.job.content == ""){
+                    layer.msg("职位描述不能为空",{icon:5})
+                    return;
+                }
+                axios.post('jobEdit', qs.stringify({
+                    title:this.job.title,
+                    areaid:this.job.areaid,
+                    categoryid:this.job.categoryid,
+                    welfarearr:this.job.welfarearr.toString(),
+                    salary:this.job.salary,
+                    education:this.job.education,
+                    experience:this.job.experience,
+                    num:this.job.num,
+                    content:this.job.content,
+                    id:this.job.id,
+                })).then(response => {
+                    location.replace("joblb.html?pageNum="+pageNum+"&key="+key)
+
+                }).catch(error => {
+                })
+
+            },
+
+            getwelfarelist(){
+                axios.post('admin/welfareList', qs.stringify({
+                })).then(response => {
+                    this.welfarelist = response.data.list
+                }).catch(error => {
+                })
+            },
+
+            getarealist(){
+                axios.post('admin/areaList', qs.stringify({
+                })).then(response => {
+                    this.arealist = response.data.list
+                    console.log(this.arealist)
+                }).catch(error => {
+                })
+            },
+
+            getcategorylist(){
+                axios.post('admin/categoryList', qs.stringify({
+                })).then(response => {
+                    this.categorylist = response.data.list
+                }).catch(error => {
+                })
+            },
+            getsessionmember() {
+                axios.post('checkmember', qs.stringify({})).then(response => {
+                    if (response.data.data == 200) {
+                        this.sessionmember = response.data.sessionmember
+                        $("#imgname").attr("src","upload/"+this.sessionmember.filename)
+                    }else{
+                        location.replace("login.html")
+                    }
+                }).catch(error => {
+                })
+            },
+
+
+        },
+
+
+    })
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframeleft").load("left.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

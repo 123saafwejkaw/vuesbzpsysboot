@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <link rel="stylesheet" href="assets/css/nice-select.min.css">
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Title -->
+    <title>大学生就业求职网站</title>
+</head>
+
+<body>
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Header Area -->
+<div id="iframetop"></div>
+<!-- End Header Area -->
+
+<!-- Start Page Title Area -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>注册</h2>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        首页
+                    </a>
+                </li>
+                <li class="active">注册</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start User Area -->
+<section class="user-area ptb-100">
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="user-form-content log-in-50">
+                    <h3>求职者注册</h3>
+
+                    <form class="user-form">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="form-group">
+
+                                    <div class="layui-upload">
+                                        <div class="layui-upload-list">
+
+                                            <input type="hidden" v-model="filename" id="filename"/>
+                                            <img class="layui-upload-img" id="imgname" style="width: 92px;">
+                                            <p id="demoText"></p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="layui-btn" id="test1" style="background: #2042e3">
+                                        上传图片
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>QQ邮箱</label>
+                                    <input class="form-control" type="text" v-model="email" @blur="checkUname(email)">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>姓名</label>
+                                    <input class="form-control" type="text" v-model="tname">
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>密码</label>
+                                    <input class="form-control" type="password" v-model="upass">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>确认密码</label>
+                                    <input class="form-control" type="password" v-model="rupass">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <a class="default-btn register"  @click="reg" style="cursor:pointer">
+                                    立即注册
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="user-form-content">
+                    <h3>企业注册</h3>
+
+                    <form class="user-form">
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="form-group">
+
+                                    <div class="layui-upload">
+                                        <div class="layui-upload-list">
+
+                                            <input type="hidden" v-model="filename_en" id="filename_en"/>
+                                            <img class="layui-upload-img" id="imgname_en" style="width: 92px;">
+                                            <p id="demoText_en"></p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="layui-btn" id="test2" style="background: #2042e3">
+                                        上传企业LOGO
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+
+                                    <div class="layui-upload">
+                                        <div class="layui-upload-list">
+                                            <input type="hidden" v-model="zzfile_en" id="zzfile_en"/>
+                                            <img class="layui-upload-img" id="imgname_en_3" style="width: 92px;">
+                                            <p id="demoText_en3"></p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="layui-btn" id="test3" style="background: #2042e3">
+                                        上传营业执照
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>QQ邮箱</label>
+                                    <input class="form-control" type="text" v-model="email_en" @blur="checkUname(email_en)">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>企业名称</label>
+                                    <input class="form-control" type="text" v-model="tname_en">
+                                </div>
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>密码</label>
+                                    <input class="form-control" type="password" v-model="upass_en">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>确认密码</label>
+                                    <input class="form-control" type="password" v-model="rupass_en">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <a class="default-btn register"  @click="reg_en" style="cursor:pointer">
+                                    立即注册
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End User Area -->
+
+<!-- Start Subscribe Area -->
+
+<!-- End Subscribe Area -->
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+<div class="copy-right-area" id="iframefoot">
+</div>
+<!-- End Copy Right Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up"></i>
+</div>
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+
+
+<script type="text/javascript">
+
+
+    var qs = Qs
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            email: "",
+            filename: "noimg.jpg",
+            upass: "",
+            rupass: "",
+            tname: "",
+
+            email_en: "",
+            filename_en: "noimg.jpg",
+            upass_en: "",
+            rupass_en: "",
+            tname_en: "",
+            zzfile_dn:"",
+        },
+        mounted() {
+            this.$nextTick(function () {
+                var img = "";
+                var img_en = "";
+                var img_en_3 = "";
+                layui.use(['form', 'layer', 'upload'], function () {
+                    $ = layui.jquery;
+                    var form = layui.form
+                        , layer = layui.layer
+                        , upload = layui.upload;
+
+                    //普通图片上传
+                    layui.use('upload', function () {
+                        var $ = layui.jquery
+                            , upload = layui.upload;
+
+                        //普通图片上传
+                        var uploadInst = upload.render({
+                            elem: '#test1'
+                            , url: 'admin/uploadImg'
+                            , accept: 'images'
+                            , size: 50000
+                            , before: function (obj) {
+
+                                obj.preview(function (index, file, result) {
+                                    $('#imgname').attr('src', result);
+                                });
+                            }
+                            , done: function (res) {
+                                //如果上传失败
+                                if (res.code > 0) {
+                                    return layer.msg('上传失败');
+                                }
+                                //上传成功
+                                var demoText = $('#demoText');
+                                demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+                                var fileupload = $(".image");
+                                fileupload.attr("value", res.data.src);
+                                // $("#filename").val(res.data.src)
+                                vmm.filename = res.data.src
+                                img = res.data.src;
+                            }
+                            , error: function () {
+                                //演示失败状态，并实现重传
+                                var demoText = $('#demoText');
+                                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                demoText.find('.demo-reload').on('click', function () {
+                                    uploadInst.upload();
+                                });
+                            }
+                        });
+
+
+
+
+
+                        var uploadInst_en = upload.render({
+                            elem: '#test2'
+                            , url: 'admin/uploadImg'
+                            , accept: 'images'
+                            , size: 50000
+                            , before: function (obj) {
+
+                                obj.preview(function (index, file, result) {
+                                    $('#imgname_en').attr('src', result);
+                                });
+                            }
+                            , done: function (res) {
+                                //如果上传失败
+                                if (res.code > 0) {
+                                    return layer.msg('上传失败');
+                                }
+                                //上传成功
+                                var demoText_en = $('#demoText_en');
+                                demoText_en.html('<span style="color: #4cae4c;">上传成功</span>');
+                                var fileupload = $(".image");
+                                fileupload.attr("value", res.data.src);
+                                // $("#filename").val(res.data.src)
+                                vmm.filename_en = res.data.src
+                                img_en = res.data.src;
+                            }
+                            , error: function () {
+                                //演示失败状态，并实现重传
+                                var demoText_en = $('#demoText_en');
+                                demoText_en.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                demoText_en.find('.demo-reload').on('click', function () {
+                                    uploadInst_en.upload();
+                                });
+                            }
+                        });
+
+                        var uploadInst_en_3 = upload.render({
+                            elem: '#test3'
+                            , url: 'admin/uploadImg'
+                            , accept: 'images'
+                            , size: 50000
+                            , before: function (obj) {
+
+                                obj.preview(function (index, file, result) {
+                                    $('#imgname_en_3').attr('src', result);
+                                });
+                            }
+                            , done: function (res) {
+                                //如果上传失败
+                                if (res.code > 0) {
+                                    return layer.msg('上传失败');
+                                }
+                                //上传成功
+                                var demoText_en3 = $('#demoText_en3');
+                                demoText_en3.html('<span style="color: #4cae4c;">上传成功</span>');
+                                var fileupload = $(".image");
+                                fileupload.attr("value", res.data.src);
+                                $("#filename").val(res.data.src)
+                                vmm.zzfile_en = res.data.src
+                                img_en = res.data.src;
+                            }
+                            , error: function () {
+                                //演示失败状态，并实现重传
+                                var demoText_en3 = $('#demoText_en3');
+                                demoText_en3.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                demoText_en3.find('.demo-reload').on('click', function () {
+                                    uploadInst_en_3.upload();
+                                });
+                            }
+                        });
+
+                    });
+                });
+            })
+        },
+        methods: {
+
+            checkUname(email){
+                if(email==""){
+                    return false;
+                }
+                axios.post('checkUname',qs.stringify({
+                    email:email,
+                })).then(response =>{
+                    if(response.data.data==400){
+                        layer.msg("邮箱被注册，请更换！",{icon:2})
+                        this.email = ""
+                        this.email_en = ""
+                    }
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+
+            reg() {
+                if (this.tname == "") {
+                    layer.msg("姓名不能为空", {icon: 5})
+                    return false;
+                }
+                if(!/^[1-9]\d{7,10}@qq\.com$/.test(this.email)){
+                    layer.msg("请输入正确的QQ邮箱！",{icon:5})
+                    return false;
+                }
+                if (this.upass == "") {
+                    layer.msg("密码不能为空", {icon: 5})
+                    return false;
+                }
+                if (this.rupass == "") {
+                    layer.msg("确认密码不能为空", {icon: 5})
+                    return false;
+                }
+
+                if (this.rupass != this.upass) {
+                    layer.msg("确认密码输入错误", {icon: 5})
+                    this.rupass = ""
+                    return false;
+                }
+                axios.post('Register', qs.stringify({
+                    tname: this.tname,
+                    filename: this.filename,
+                    upass: this.upass,
+                    email: this.email,
+                    role: "求职者",
+                })).then(response => {
+                    layer.msg("注册成功！",{icon:6})
+                    this.tname=""
+                    this.upass=""
+                    this.email=""
+                    this.rupass = ""
+                }).catch(error => {
+                })
+            },
+
+
+            reg_en() {
+                if (this.zzfile == "") {
+                    layer.msg("企业营业执照不能为空", {icon: 5})
+                    return false;
+                }
+                if (this.tname_en == "") {
+                    layer.msg("企业名称不能为空", {icon: 5})
+                    return false;
+                }
+
+                if(!/^[1-9]\d{7,10}@qq\.com$/.test(this.email_en)){
+                    layer.msg("请输入正确的QQ邮箱！",{icon:5})
+                    return false;
+                }
+                if (this.upass_en == "") {
+                    layer.msg("密码不能为空", {icon: 5})
+                    return false;
+                }
+                if (this.rupass_en == "") {
+                    layer.msg("确认密码不能为空", {icon: 5})
+                    return false;
+                }
+
+                if (this.rupass_en != this.upass_en) {
+                    layer.msg("确认密码输入错误", {icon: 5})
+                    this.rupass_en = ""
+                    return false;
+                }
+                axios.post('Register', qs.stringify({
+                    tname: this.tname_en,
+                    filename: this.filename_en,
+                    upass: this.upass_en,
+                    email: this.email_en,
+                    zzfile:this.zzfile_en,
+                    role: "企业",
+                })).then(response => {
+                    layer.msg("注册成功！",{icon:6})
+                    this.tname_en=""
+                    this.upass_en=""
+                    this.email_en=""
+                    this.rupass_en=""
+
+
+                }).catch(error => {
+                })
+            },
+        },
+
+
+    })
+
+
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

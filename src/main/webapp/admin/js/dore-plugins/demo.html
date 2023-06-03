@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="show-spinner" >
+
+<div id="app">
+
+    <div class="container-fluid" v-show="show">
+        <div class="row">
+            <div class="col-12">
+
+
+                <!-- 1. dropzone -->
+
+                <!-- 图片地址： var imgdata=imghost+tempimg.data;   -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="mb-4">景点图片</h5>
+                        <form action="/file-upload">
+                            <div class="dropzone">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2.ckeditor -->
+
+                <!--  获取内容: ckEditor.getData()    -->
+                <textarea name="content" id="ckEditorClassic" style="display: none;"></textarea>
+
+                <!-- 3.quillEditor -->
+
+                <!--  获取内容:    -->
+                <div class="html-editor" id="quillEditor"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Owl Theme Default Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Boxicons Min CSS -->
+    <link rel="stylesheet" href="assets/css/boxicons.min.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <!-- Meanmenu Min CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <!-- Nice Select Min CSS -->
+    <link rel="stylesheet" href="assets/css/nice-select.min.css">
+    <!-- Odometer Min CSS-->
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <!-- Date Picker CSS-->
+    <link rel="stylesheet" href="assets/css/date-picker.min.css">
+    <!-- Muli Fonts Min CSS-->
+    <link rel="stylesheet" href="assets/css/muli-fonts.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- Title -->
+    <title>大学生就业求职网站</title>
+
+    <style>
+        .layui-form-checkbox i{
+            height: 30px;
+        }
+
+        .menusactive {
+            color: #2042e3 !important;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Start Preloader Area -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
+</div>
+<!-- End Preloader Area -->
+
+<!-- Start Header Area -->
+<div id="iframetop"></div>
+<!-- End Header Area -->
+
+<!-- Start Page Title Area -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content" style="text-align: center">
+            <h3>猜你喜欢</h3>
+            <ul>
+                <li>
+                    <a href="index.html">
+                        首页
+                    </a>
+                </li>
+                <li class="active">猜你喜欢</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Start Candidates Profile Area -->
+<section class="job-listing-area ptb-100">
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-lg-8">
+                    <!--<div class="row">-->
+                        <!--<div class="col-lg-5">-->
+                            <!--<div class="form-group">-->
+                                <!--<input type="text" v-model="key" class="form-control" id="job-title" placeholder="标题或企业">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<div class="col-lg-4">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" class="form-control" id="job-title-2" placeholder="城市或">&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--<div class="col-lg-3">-->
+                            <!--<button  class="default-btn" @click="getjoblist(key1,key2,key3)">-->
+                                <!--<i class="bx bx-search"></i>-->
+                                <!--搜索工作-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+
+                <div class="hot-jobs-list" v-for="(job,i) in joblist" v-if="i<10">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2">
+                            <a :href="['companydetails.html?id='+job.company.id]" class="hot-jobs-img">
+                                <img :src="['upload/'+job.company.filename]" alt="Image">
+                            </a>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="hot-jobs-content">
+                                <h3><a :href="['jobdetails.html?id='+job.id]">{{job.title}}</a></h3>
+                                <!--<span class="sub-title">Finix loans & funding agency</span>-->
+                                <ul>
+                                    <li><span>学历要求: </span>{{job.education}}</li>
+                                    <li><span>职位: </span>{{job.category.name}}</li>
+                                    <li><span>城市: </span>{{job.area.name}}</li>
+                                    <li><span>被投递次数: </span>{{tdcs}}次</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="hot-jobs-btn">
+                                <a :href="['jobdetails.html?id='+job.id]" class="default-btn">浏览详情</a>
+                                <p><span>发布日期: </span>{{job.savetime}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="featured">{{i+1}}</span>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <!--<div class="row">-->
+                    <!--<div class="col-lg-12 col-md-12">-->
+                        <!--<div class="pagination-area">-->
+                            <!--<div id="demo1" style="text-align: center"></div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+
+            <div class="col-lg-4">
+                <div class="job-listing-sidebar">
+                    <!--<div class="job-listing-widget">-->
+                        <!--<ul class="accordion-widget">-->
+                            <!--<li class="accordion-item">-->
+                                <!--<a class="accordion-widget-title active" href="javascript:void(0)">-->
+                                    <!--<h3>城市</h3>-->
+                                    <!--<i class="bx bx-chevron-down"></i>-->
+                                <!--</a>-->
+
+                                <!--<ul class="accordion-widget-content show">-->
+                                    <!--<li>-->
+                                        <!--<label class="single-check">-->
+                                            <!--<a href="javascript:;" @click="getjoblist('',key2,key3)" :class="key1==''?'menusactive':''"> 全部</a>-->
+                                        <!--</label>-->
+                                    <!--</li>-->
+                                    <!--<li  v-for="area in arealist">-->
+                                        <!--<label class="single-check">-->
+                                            <!--<a href="javascript:;" @click="getjoblist(area.id,key2,key3)" :class="key1==area.id?'menusactive':''"> {{area.name}}</a>-->
+                                        <!--</label>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+
+
+                    <!--<div class="job-listing-widget">-->
+                        <!--<ul class="accordion-widget">-->
+                            <!--<li class="accordion-item">-->
+                                <!--<a class="accordion-widget-title active" href="javascript:void(0)">-->
+                                    <!--<h3>职位</h3>-->
+                                    <!--<i class="bx bx-chevron-down"></i>-->
+                                <!--</a>-->
+
+                                <!--<ul class="accordion-widget-content show">-->
+                                    <!--<li>-->
+                                        <!--<label class="single-check">-->
+                                            <!--<a href="javascript:;" @click="getjoblist(key1,'',key3)" :class="key2==''?'menusactive':''"> 全部</a>-->
+                                        <!--</label>-->
+                                    <!--</li>-->
+                                    <!--<li  v-for="category in categorylist">-->
+                                        <!--<label class="single-check">-->
+                                            <!--<a href="javascript:;" @click="getjoblist(key1,category.id,key3)" :class="key2==category.id?'menusactive':''"> {{category.name}}</a>-->
+                                        <!--</label>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+
+
+                    <!--<div class="job-listing-widget">-->
+                        <!--<ul class="accordion-widget">-->
+                            <!--<li class="accordion-item">-->
+                                <!--<a class="accordion-widget-title active" href="javascript:void(0)">-->
+                                    <!--<h3>待遇</h3>-->
+                                    <!--<i class="bx bx-chevron-down"></i>-->
+                                <!--</a>-->
+
+                                <!--<ul class="accordion-widget-content show" style="display: flex;flex-wrap: wrap">-->
+                                    <!--<li>-->
+                                        <!--<form>-->
+                                            <!--<div class="form layui-form layui-form-item">-->
+                                                <!--<input v-for="welfare in welfarelist" type="checkbox" :value="welfare.name" :title="welfare.name">-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Candidates Profile Area -->
+
+<!-- Start Subscribe Area -->
+
+<!-- End Subscribe Area -->
+
+<!-- Start Footer Area -->
+
+<!-- End Footer Area -->
+
+<!-- Start Copy Right Area -->
+
+<div class="copy-right-area" id="iframefoot">
+</div>
+
+<!-- End Copy Right Area -->
+
+<!-- Start Go Top Area -->
+<div class="go-top">
+    <i class="bx bx-chevrons-up"></i>
+    <i class="bx bx-chevrons-up"></i>
+</div>
+<!-- End Go Top Area -->
+
+
+<!-- Jquery Min JS -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="assets/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Meanmenu Min JS -->
+<script src="assets/js/meanmenu.min.js"></script>
+<!-- Wow Min JS -->
+<script src="assets/js/wow.min.js"></script>
+<!-- Owl Carousel Min JS -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- Nice Select Min JS -->
+<script src="assets/js/nice-select.min.js"></script>
+<!-- Magnific Popup Min JS -->
+<script src="assets/js/magnific-popup.min.js"></script>
+<!-- Mixitup JS -->
+<script src="assets/js/jquery.mixitup.min.js"></script>
+<!-- Appear Min JS -->
+<script src="assets/js/appear.min.js"></script>
+<!-- Odometer Min JS -->
+<script src="assets/js/odometer.min.js"></script>
+<!-- Range Slider Min JS -->
+<script src="assets/js/range-slider.min.js"></script>
+<!-- Datepicker Min JS -->
+<script src="assets/js/bootstrap-datepicker.min.js"></script>
+<!-- Form Validator Min JS -->
+<script src="assets/js/form-validator.min.js"></script>
+<!-- Contact JS -->
+<script src="assets/js/contact-form-script.js"></script>
+<!-- Ajaxchimp Min JS -->
+<script src="assets/js/ajaxchimp.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/custom.js"></script>
+
+<script type="text/javascript" src="axios/vue.js"></script>
+<script type="text/javascript" src="axios/axios.min.js"></script>
+<script type="text/javascript" src="axios/qs.js"></script>
+<script type="text/javascript" src="axios/getUrlParams.js"></script>
+<script type="text/javascript" src="layer/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="layer/layer.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript">
+
+
+    var pageNum = UrlParam.paramValues("pageNum")==null?1:UrlParam.paramValues("pageNum").toString()
+    var key = UrlParam.paramValues("key")==null?"":UrlParam.paramValues("key").toString()
+    var key1 = UrlParam.paramValues("key1")==null?"":UrlParam.paramValues("key1").toString()
+    var key2 = UrlParam.paramValues("key2")==null?"":UrlParam.paramValues("key2").toString()
+    var key3 = UrlParam.paramValues("key3")==null?"":UrlParam.paramValues("key3").toString()
+
+    var qs = Qs
+    var vmm = new Vue({
+        el: '#app',
+        data: {
+            joblist:[],
+
+            arealist:[],
+            categorylist:[],
+            welfarelist:[],
+
+
+            key:key,
+            key1:key1,
+            key2:key2,
+            key3:key3,
+
+            pageSize:10,
+            pageNum:pageNum,
+        },
+        mounted() {
+            sessionStorage.setItem("banermenus","recommend")
+            this.getjoblist(this.key1,this.key2,this.key3)
+            this.getarealist()
+            this.getcategorylist()
+            this.getwelfarelist()
+
+
+        },
+        methods: {
+
+            getjoblist(key1,key2,key3) {
+                this.key1 = key1
+                this.key2 = key2
+                this.key3 = key3
+                axios.post('recommend',qs.stringify({
+                })).then(response =>{
+                    this.joblist = response.data.list
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+
+
+            getwelfarelist(){
+                axios.post('admin/welfareList',qs.stringify({
+                })).then(response =>{
+                    this.welfarelist = response.data.list
+
+                    this.$nextTick(function(){
+                        layui.use('form', function(){
+                            var form = layui.form;
+                            form.on('checkbox',function(data){
+
+                                var welfarearray = new Array();
+                                $("input[type='checkbox']:checked").each(function(index,lab){
+                                    welfarearray.push(lab.value)
+                                })
+                                vmm.key3 = welfarearray
+                                vmm.getjoblist(vmm.key1,vmm.key2,welfarearray)
+                            })
+                        });
+                    })
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+            getcategorylist(){
+                axios.post('admin/categoryList',qs.stringify({
+                })).then(response =>{
+                    this.categorylist = response.data.list
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+
+            getarealist(){
+                axios.post('admin/areaList',qs.stringify({
+                })).then(response =>{
+                    this.arealist = response.data.list
+                }).catch(error =>{
+                    console.log(error)
+                })
+            },
+        },
+
+
+    })
+    window.onload = function () {
+        $("#iframetop").load("top.html")
+        $("#iframefoot").load("foot.html")
+    }
+</script>
+</body>
+</html>

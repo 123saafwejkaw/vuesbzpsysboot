@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.CommentDAO">
+    <resultMap type="com.it.entity.Comment" id="BaseResultMap">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="memberid" property="memberid" jdbcType="INTEGER"/>
+        <result column="jobid" property="jobid" jdbcType="INTEGER"/>
+        <result column="companyid" property="companyid" jdbcType="INTEGER"/>
+        <result column="note" property="note" jdbcType="VARCHAR"/>
+        <result column="savetime" property="savetime" jdbcType="VARCHAR"/>
+        <result column="reply" property="reply" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+
+    <insert id="add" parameterType="com.it.entity.Comment">
+        insert into Comment values(null,#{memberid},#{jobid},#{companyid},#{note},#{savetime},#{reply})
+    </insert>
+
+    <update id="update" parameterType="com.it.entity.Comment">
+        update Comment
+        <set>
+            <if test="note!=null and note!=''">note=#{note},</if>
+            <if test="reply!=null and reply!=''">reply=#{reply},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from Comment where 1=1
+        <if test="key!=null and key!=''">
+            and companyid in (select id from member where tname like "%"#{key}"%" and role='企业')
+        </if>
+        <if test="key2!=null and key2!=''">
+            and jobid in (select id from job where title like "%"#{key2}"%" )
+        </if>
+        <if test="memberid!=null and memberid!=''">
+            and memberid=#{memberid}
+        </if>
+        <if test="jobid!=null and jobid!=''">
+            and jobid=#{jobid}
+        </if>
+        <if test="companyid!=null and companyid!=''">
+            and companyid=#{companyid}
+        </if>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="int" resultType="com.it.entity.Comment">
+      select * from Comment where id=#{id}
+    </select>
+
+
+    <delete id="delete" parameterType="int">
+      delete from Comment where id=#{id}
+    </delete>
+
+
+</mapper>
+
