@@ -220,8 +220,6 @@ public class UtilController  extends BaseController {
         for(int i=0;i<ulist.size();i++){
             uarray[i]=String.valueOf(ulist.get(i).getId());
         }
-
-
         //对象集合
         HashMap map = new HashMap();
         map.put("status","已通过");
@@ -230,8 +228,6 @@ public class UtilController  extends BaseController {
         for(int i=0;i<joblist.size();i++){
             dyarray[i]=String.valueOf(joblist.get(i).getId());
         }
-
-
         //评分
         int [][] arr2 = new int[ulist.size()][];
         int count = 0;
@@ -254,19 +250,16 @@ public class UtilController  extends BaseController {
                 if(sclist.size() > 0){
                     zs += 2;
                 }
-
                 //点赞权重 +1
                 m1.put("type", "2");
                 List<Fav> dzlist = favDAO.selectAll(m1);
                 if(dzlist.size() > 0){
                     zs += 1;
                 }
-
                 //浏览权重 +1
                 m1.put("type", "3");
                 List<Fav> lllist = favDAO.selectAll(m1);
                     zs += lllist.size();
-
                 //投递权重 +5
                 m1.put("status", "应聘成功");
                 System.out.println("aaa="+m1);
@@ -274,8 +267,6 @@ public class UtilController  extends BaseController {
                 if(applyList.size() > 0){
                     zs += 5;
                 }
-
-
                 tmpArr[j] = zs;
 //                System.out.println("dyobj"+j+"    "+dyobj);
                 //tmpArr[j] = (++count);
@@ -288,7 +279,6 @@ public class UtilController  extends BaseController {
             }
             System.out.println();
         }
-
         UserCFDemo u = new UserCFDemo();
         u.users = uarray;
         u.movies = dyarray;
